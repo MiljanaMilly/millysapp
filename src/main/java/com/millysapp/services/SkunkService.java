@@ -22,20 +22,21 @@ public class SkunkService {
         this.postgresRepository = postgresRepository;
     }
 
-    public List<Skunk> findAll() {
+    public List<Skunk> findMAll() {
         List<Skunk> list =  mariaDBRepository.findAll();
         System.out.println("Maria Db");
         for (Skunk skunk : list) {
-
             System.out.println(skunk.getName());
         }
+        return list;
+    }
 
-        List<Skunk> list1 = postgresRepository.findAll();
+    public List<Skunk> findPAll() {
+        List<Skunk> list = postgresRepository.findAll();
         System.out.println("Postgres");
-        for (Skunk skunk : list1) {
+        for (Skunk skunk : list) {
             System.out.println(skunk.getName());
         }
-
-        return list1;
+        return list;
     }
 }

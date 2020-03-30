@@ -31,11 +31,19 @@ public class HomeController {
         return mav;
     }
 
-    @GetMapping(value = "/getSkunks")
+    @GetMapping(value = "/getMSkunks")
     @ResponseBody
-    public ResponseEntity<List<Skunk>> getSkunks() {
+    public ResponseEntity<List<Skunk>> getMSkunks() {
 
-        List<Skunk> skunkList = skunkService.findAll();
+        List<Skunk> skunkList = skunkService.findMAll();
+        return new ResponseEntity<List<Skunk>>(skunkList, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/getPSkunks")
+    @ResponseBody
+    public ResponseEntity<List<Skunk>> getPSkunks() {
+
+        List<Skunk> skunkList = skunkService.findPAll();
         return new ResponseEntity<List<Skunk>>(skunkList, HttpStatus.OK);
     }
 
