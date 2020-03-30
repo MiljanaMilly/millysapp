@@ -3,14 +3,18 @@ services:
 
  postgresdb:
    image: postgres:latest
+   container_name: postgresdb
    environment:
      POSTGRES_DB: skunksdb
      POSTGRES_USER: postgres
      POSTGRES_PASSWORD: 1
+   volumes:
+   - dbdata:/pgdb
 
 
  mariadb:
    image: mariadb:latest
+   container_name: mariadb
    restart: always
    environment:
       - MYSQL_ROOT_PASSWORD=1
@@ -18,12 +22,21 @@ services:
       - MYSQL_INITDB_SKIP_TZINFO=1
    ports:
      - 3306:3306
+   volumes:
+   - dbdata:/mdb
 
 
  app:
   build: .
+  container_name: skunksapp
   depends_on:
     - postgresdb
     - mariadb
   ports:
     - 80:9000
+  volumes:
+    - appdata:/app
+
+volumes:
+  appdata:
+  dbdata:
