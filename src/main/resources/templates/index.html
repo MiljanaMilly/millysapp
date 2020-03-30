@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index | MillysApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}"
+          href="/webjars/bootstrap/4.4.1-1/css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" th:href="@{css/styles.css}"/>
+</head>
+<body class="indexBody">
+
+<div class="container mt-3">
+<!--    <a class="navbar-brand text-center" href="/index" th:href="@{/}" style="width:20%;">-->
+<!--        <img src="img/skunkworks.png" th:src="@{img/skunkworks.png}"  width="210" height="65" alt="logotitle">-->
+<!--    </a>-->
+    <p class="lead text-left site-text ml-3" >Welcome to the Skunk World</p>
+    <hr class="my-4">
+    <br>
+</div>
+
+<div class="container mt-3">
+    <table class="table table-sm">
+        <thead class="justify-content-center align-items-center text-center" style="width: 100%;">
+        <tr class="row" style="color:white; background-color: rgba(102, 102, 51, 0.4); ">
+            <th class="col">Name</th>
+            <th class="col">Color</th>
+            <th class="col">Size</th>
+            <th class="col">Weight</th>
+            <th class="col">Is Omnivorous</th>
+            <th class="col">Family</th>
+            <th class="col">Edit</th>
+        </tr>
+        </thead>
+        <tbody class="justify-content-center align-items-center text-center" style="width: 100%;">
+        <tr class="row">
+            <td class="col"><p>project</p></td>
+            <td class="col"></td>
+            <td class="col"></td>
+            <td class="col"></td>
+            <td class="col"><p> </p></td>
+            <td class="col" >
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<div th:insert="fragments/footer :: footer">...</div>
+
+<script th:src="@{webjars/jquery/3.4.1/jquery.min.js}" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{webjars/popper.js/2.0.2/umd/popper.min.js}"
+        src="/webjars/popper.js/2.0.2/umd/popper.min.js"></script>
+<script th:src="@{webjars/bootstrap/4.4.1-1/js/bootstrap.js}" src="/webjars/bootstrap/4.4.1-1/js/bootstrap.js"></script>
+<script th:src="@{js/scripts.js}"></script>
+</body>
+</html>

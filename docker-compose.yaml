@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+ postgresdb:
+   image: postgres:latest
+   environment:
+     POSTGRES_DB: skunksdb
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: 1
+
+
+ mariadb:
+   image: mariadb:latest
+   restart: always
+   environment:
+      - MYSQL_ROOT_PASSWORD=1
+      - MYSQL_DATABASE=skunksdb
+      - MYSQL_INITDB_SKIP_TZINFO=1
+   ports:
+     - 3306:3306
+
+
+ app:
+  build: .
+  depends_on:
+    - postgresdb
+    - mariadb
+  ports:
+    - 80:9000

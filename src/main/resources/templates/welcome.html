@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome | MillysApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}"
+          href="/webjars/bootstrap/4.4.1-1/css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" th:href="@{css/styles.css}"/>
+</head>
+<body class="welcomePageBody">
+<div class="container ">
+    <div class="row">
+        <div class="col-md-5 mx-auto mt-5 welcomeButton">
+            <div class="text-center py-2">
+                <a th:href="@{/index}" href=# class="btn btn-lg btn-outline-secondary">
+                    Enter the Skunk World</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/footer :: footer">...</div>
+
+<script th:src="@{webjars/jquery/3.4.1/jquery.min.js}" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{webjars/popper.js/2.0.2/umd/popper.min.js}"
+        src="/webjars/popper.js/2.0.2/umd/popper.min.js"></script>
+<script th:src="@{webjars/bootstrap/4.4.1-1/js/bootstrap.js}" src="/webjars/bootstrap/4.4.1-1/js/bootstrap.js"></script>
+<script th:src="@{js/scripts.js}"></script>
+</body>
+</html>
