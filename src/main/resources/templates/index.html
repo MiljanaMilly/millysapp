@@ -17,13 +17,49 @@
 <!--    </a>-->
     <p class="lead text-left site-text ml-3" >Welcome to the Skunk World</p>
     <hr class="my-4">
-    <br>
 </div>
+<div class="container">
+    <div class="row">
+    <div class="row col-2 h-50 mt-4">
+        <a type="button" class="d-inline-block btn btn-outline-dark" href="#" th:href="@{/addNewSkunk}">Add new</a>
+    </div>
+    <div class="row col-10">
+<!--        <div class="dropdown">-->
+<!--            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                Dropdown button-->
+<!--            </button>-->
+
+<!--            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >-->
+<!--                <a class="dropdown-item" href="#"-->
+<!--                   th:each="option : ${T(com.millysapp.enums.DatabaseEnum).values()}"-->
+<!--                   th:text="${option.displayName}"-->
+<!--                   th:href="@{/index(database=${option.displayName})}"-->
+<!--                >Action</a>-->
+
+<!--            </div>-->
+<!--        </div>-->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#"
+                   th:each="option : ${T(com.millysapp.enums.DatabaseEnum).values()}"
+                   th:text="${option.displayName}"
+                   th:href="@{/index(database=${option.displayName})}"
+                >Action</a>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+
 
 <div class="container mt-3">
     <table class="table table-sm">
         <thead class="justify-content-center align-items-center text-center" style="width: 100%;">
-        <tr class="row" style="color:white; background-color: rgba(102, 102, 51, 0.4); ">
+        <tr class="row" style="color:white; background-color: rgba(105,105,105, 0.4); ">
             <th class="col">Name</th>
             <th class="col">Color</th>
             <th class="col">Size</th>
@@ -33,14 +69,22 @@
             <th class="col">Edit</th>
         </tr>
         </thead>
-        <tbody class="justify-content-center align-items-center text-center" style="width: 100%;">
-        <tr class="row">
-            <td class="col"><p>project</p></td>
-            <td class="col"></td>
-            <td class="col"></td>
-            <td class="col"></td>
-            <td class="col"><p> </p></td>
-            <td class="col" >
+        <tbody class="justify-content-center align-items-center text-center"  style="width: 100%;">
+        <tr class="row" th:each="skunk : ${skunks}">
+            <td class="col"><p th:text="${skunk.name}">project</p></td>
+            <td class="col" th:text="${skunk.color}"></td>
+            <td class="col" th:text="${skunk.size}"></td>
+            <td class="col" th:text="${skunk.weight}"></td>
+            <td class="col"><p th:text="${skunk.isOmnivorous()}"> </p></td>
+            <td class="col" th:text="${skunk.familyName}"></td>
+            <td class="col">
+                <a href="#">
+                    <strong> Update</strong>
+                </a>
+                <strong >|</strong>
+                <a href="#">
+                    <strong> Delete</strong>
+                </a>
             </td>
         </tr>
         </tbody>
