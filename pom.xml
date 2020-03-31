@@ -77,7 +77,7 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>popper.js</artifactId>
-            <version>2.0.2</version>
+            <version>1.15.0</version>
         </dependency>
     </dependencies>
 

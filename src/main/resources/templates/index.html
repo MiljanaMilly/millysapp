@@ -24,23 +24,9 @@
         <a type="button" class="d-inline-block btn btn-outline-dark" href="#" th:href="@{/addNewSkunk}">Add new</a>
     </div>
     <div class="row col-10">
-<!--        <div class="dropdown">-->
-<!--            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                Dropdown button-->
-<!--            </button>-->
-
-<!--            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >-->
-<!--                <a class="dropdown-item" href="#"-->
-<!--                   th:each="option : ${T(com.millysapp.enums.DatabaseEnum).values()}"-->
-<!--                   th:text="${option.displayName}"-->
-<!--                   th:href="@{/index(database=${option.displayName})}"-->
-<!--                >Action</a>-->
-
-<!--            </div>-->
-<!--        </div>-->
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown button
+        <div class="dropdown mt-4">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Choose datasource
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#"
@@ -98,8 +84,7 @@
 <div th:insert="fragments/footer :: footer">...</div>
 
 <script th:src="@{webjars/jquery/3.4.1/jquery.min.js}" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<script th:src="@{webjars/popper.js/2.0.2/umd/popper.min.js}"
-        src="/webjars/popper.js/2.0.2/umd/popper.min.js"></script>
+<script th:src="@{webjars/popper.js/1.15.0/umd/popper.min.js}" src="/webjars/popper.js/1.15.0/umd/popper.min.js"></script>
 <script th:src="@{webjars/bootstrap/4.4.1-1/js/bootstrap.js}" src="/webjars/bootstrap/4.4.1-1/js/bootstrap.js"></script>
 <script th:src="@{js/scripts.js}"></script>
 </body>
