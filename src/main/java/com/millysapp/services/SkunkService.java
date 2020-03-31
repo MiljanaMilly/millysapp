@@ -1,5 +1,6 @@
 package com.millysapp.services;
 
+import com.millysapp.enums.DatabaseEnum;
 import com.millysapp.model.Skunk;
 import com.millysapp.repository.mariadb.SkunkMariaDBRepository;
 import com.millysapp.repository.postgres.SkunkPostgresRepository;
@@ -13,13 +14,20 @@ import java.util.List;
 public class SkunkService {
 
     private final SkunkMariaDBRepository mariaDBRepository;
-
     private final SkunkPostgresRepository postgresRepository;
 
     @Autowired
     public SkunkService(SkunkMariaDBRepository mariaDBRepository, SkunkPostgresRepository postgresRepository) {
         this.mariaDBRepository = mariaDBRepository;
         this.postgresRepository = postgresRepository;
+    }
+
+    public List<Skunk> findAll(String databaseName) {
+        if(databaseName.equals(DatabaseEnum.POSTGRES_DB.getDisplayName())) {
+            return postgresRepository.findAll();
+        } else {
+            return mariaDBRepository.findAll();
+        }
     }
 
     public List<Skunk> findMAll() {
