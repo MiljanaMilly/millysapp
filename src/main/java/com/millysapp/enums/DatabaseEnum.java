@@ -3,7 +3,8 @@ package com.millysapp.enums;
 public enum DatabaseEnum {
 
     POSTGRES_DB("Postgres"),
-    MARIA_DB("MariaDB");
+    MARIA_DB("MariaDB"),
+    BOTH("Both");
 
     private String displayName;
 
