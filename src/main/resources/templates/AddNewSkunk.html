@@ -82,39 +82,30 @@
         </div>
     </div>
     <div class="form-row col-6 mt-4">
-        <label class="lead ml-3" for="datasource">Choose datasource:</label>
-        <select  class="form-control" id="datasource" th:field="*{chosenDatabase}" required>
-            <option value="default"> <i>Choose a datasource...</i></option>
-            <option
-                    th:each="option : ${T(com.millysapp.enums.DatabaseEnum).values()}"
-                    th:text="${option.displayName}"
-                    th:value="${option.displayName}"
-            >
-            </option>
-            <option value="All" th:text="All"></option>
-        </select>
-        <div class="invalid-feedback">
-            Please choose a datasource.
+        <div class="form-group">
+            <label class="lead ml-3" for="datasource">Choose datasource:</label>
+            <select  class="form-control" id="datasource" th:field="*{chosenDatabase}" required>
+                <option value=""> <i>Choose a datasource...</i></option>
+                <option
+                        th:each="option : ${T(com.millysapp.enums.DatabaseEnum).values()}"
+                        th:text="${option.displayName}"
+                        th:value="${option}"
+                >
+                </option>
+            </select>
+            <div class="invalid-feedback">
+                Please choose a datasource.
+            </div>
         </div>
     </div>
 
     <div class="form-row col-6 mt-4">
         <label for="isOmnivorous" class="lead ml-3">Omnivorous: </label>
-        <input type="checkbox"  id="isOmnivorous" th:field="*{omnivorous}" style="margin-left: 15px; " />
-    </div>
+        <input type="checkbox"  id="isOmnivorous" th:field="*{omnivorous}" style="margin-left: 15px;" />
 
+    </div>
     <button type="submit" class="btn btn-outline-dark ml-3 mt-4">Save</button>
 </form>
-
-
-
-
-
-
-
-
-
-
 
 
 <div th:insert="fragments/footer :: footer">...</div>

@@ -28,7 +28,7 @@
             <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                <span th:text="${datasource}"> Choose datasource </span>
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu indexDropdown" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#"
                    th:each="option : ${T(com.millysapp.enums.DatabaseEnum).values()}"
                    th:text="${option.displayName}"
@@ -61,7 +61,7 @@
             <td class="col" th:text="${skunk.color}"></td>
             <td class="col" th:text="${skunk.size}"></td>
             <td class="col" th:text="${skunk.weight}"></td>
-            <td class="col"><p th:text="${skunk.isOmnivorous()}"> </p></td>
+            <td class="col"><p th:text="${skunk.omnivorous}"> </p></td>
             <td class="col" th:text="${skunk.familyName}"></td>
             <td class="col">
                 <a href="#">
