@@ -16,6 +16,96 @@
     <br>
 </div>
 
+<form class="needs-validation" th:object="${skunkDto}" th:action="@{/skunks}" method="post" style="width: 58%; margin-left: auto; margin-right: auto;" novalidate>
+    <div class="form-row col-10">
+        <div class="form-group col-4 mt-4">
+            <label for="name" class="lead ml-3">Skunk name: </label>
+            <input type="text" id="name" class="form-control" placeholder="Enter skunk name here..." th:field ="*{name}" th:value="*{name}" required>
+            <div class="invalid-feedback">
+                Please enter the skunk name.
+            </div>
+    <!--        <p class="text-danger text-center"-->
+    <!--           th:if="${#fields.hasErrors('name')}"-->
+    <!--           th:errors="*{name}">-->
+    <!--            Validation error-->
+    <!--        </p>-->
+        </div>
+        <div class="form-group col-4 mt-4">
+            <label for="family" class="lead ml-3">Skunk family name: </label>
+            <input type="text" id="family" class="form-control" placeholder="Enter family name here..." th:field ="*{familyName}" th:value="*{familyName}" required>
+            <div class="invalid-feedback">
+                Please enter the skunk family name.
+            </div>
+            <!--        <p class="text-danger text-center"-->
+            <!--           th:if="${#fields.hasErrors('name')}"-->
+            <!--           th:errors="*{name}">-->
+            <!--            Validation error-->
+            <!--        </p>-->
+        </div>
+        <div class="form-group col-4 mt-4">
+            <label for="color" class="lead ml-3">Skunk color: </label>
+            <input type="text" id="color" class="form-control" placeholder="Enter skunk color here..." th:field ="*{color}" th:value="*{color}" required>
+            <div class="invalid-feedback">
+                Please enter the skunk color.
+            </div>
+            <!--        <p class="text-danger text-center"-->
+            <!--           th:if="${#fields.hasErrors('name')}"-->
+            <!--           th:errors="*{name}">-->
+            <!--            Validation error-->
+            <!--        </p>-->
+        </div>
+    </div>
+    <div class="form-row col-8">
+        <div class="form-group col-4 mt-4">
+            <label for="name" class="lead ml-3">Skunk size: </label>
+            <input type="text" id="size" class="form-control" placeholder="Enter skunk size here..." th:field ="*{size}" th:value="*{size}" required>
+            <div class="invalid-feedback">
+                Please enter the skunk size.
+            </div>
+            <!--        <p class="text-danger text-center"-->
+            <!--           th:if="${#fields.hasErrors('name')}"-->
+            <!--           th:errors="*{name}">-->
+            <!--            Validation error-->
+            <!--        </p>-->
+        </div>
+        <div class="form-group col-4 mt-4">
+            <label for="family" class="lead ml-3">Skunk weight: </label>
+            <input type="text" id="weight" class="form-control" placeholder="Enter skunk weight here..." th:field ="*{weight}" th:value="*{weight}" required>
+            <div class="invalid-feedback">
+                Please enter the skunk  weight.
+            </div>
+            <!--        <p class="text-danger text-center"-->
+            <!--           th:if="${#fields.hasErrors('name')}"-->
+            <!--           th:errors="*{name}">-->
+            <!--            Validation error-->
+            <!--        </p>-->
+        </div>
+    </div>
+    <div class="form-row col-6 mt-4">
+        <label class="lead ml-3" for="datasource">Choose datasource:</label>
+        <select  class="form-control" id="datasource" th:field="*{chosenDatabase}" required>
+            <option value="default"> <i>Choose a datasource...</i></option>
+            <option
+                    th:each="option : ${T(com.millysapp.enums.DatabaseEnum).values()}"
+                    th:text="${option.displayName}"
+                    th:value="${option.displayName}"
+            >
+            </option>
+            <option value="All" th:text="All"></option>
+        </select>
+        <div class="invalid-feedback">
+            Please choose a datasource.
+        </div>
+    </div>
+
+    <div class="form-row col-6 mt-4">
+        <label for="isOmnivorous" class="lead ml-3">Omnivorous: </label>
+        <input type="checkbox"  id="isOmnivorous" th:field="*{omnivorous}" style="margin-left: 15px; " />
+    </div>
+
+    <button type="submit" class="btn btn-outline-dark ml-3 mt-4">Save</button>
+</form>
+
 
 
 

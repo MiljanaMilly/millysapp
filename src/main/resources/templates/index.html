@@ -21,12 +21,12 @@
 <div class="container">
     <div class="row">
     <div class="row col-2 h-50 mt-4">
-        <a type="button" class="d-inline-block btn btn-outline-dark" href="#" th:href="@{/addNewSkunk}">Add new</a>
+        <a type="button" class="d-inline-block btn btn-outline-dark" href="#" th:href="@{/skunks}">Add new</a>
     </div>
     <div class="row col-10">
         <div class="dropdown mt-4">
             <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Choose datasource
+               <span th:text="${datasource}"> Choose datasource </span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#"
