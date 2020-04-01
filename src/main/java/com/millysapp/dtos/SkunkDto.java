@@ -76,4 +76,5 @@ public class SkunkDto {
     public void setChosenDatabase(DatabaseEnum chosenDatabase) {
         this.chosenDatabase = chosenDatabase;
     }
+
 }

@@ -4,7 +4,8 @@ public enum DatabaseEnum {
 
 
     MARIA_DB("MariaDB"),
-    POSTGRES_DB("Postgres");
+    POSTGRES_DB("Postgres"),
+    ALL("All");
 
     private String displayName;
 

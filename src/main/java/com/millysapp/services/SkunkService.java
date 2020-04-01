@@ -10,6 +10,9 @@ import org.apache.tomcat.util.net.jsse.JSSEUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
@@ -37,21 +40,21 @@ public class SkunkService {
         return null;
     }
 
-//    public List<Skunk> findMAll() {
-//        List<Skunk> list =  mariaDBRepository.findAll();
-//        System.out.println("Maria Db");
-//        for (Skunk skunk : list) {
-//            System.out.println(skunk.getName());
-//        }
-//        return list;
-//    }
-//
-//    public List<Skunk> findPAll() {
-//        List<Skunk> list = postgresRepository.findAll();
-//        System.out.println("Postgres");
-//        for (Skunk skunk : list) {
-//            System.out.println(skunk.getName());
-//        }
-//        return list;
-//    }
+    public void save(SkunkDto skunkDto) {
+        Skunk skunk = skunkMapper.mapToEntity(skunkDto);
+
+        skunk.setCreatedOn(ZonedDateTime.now());
+        skunk.setUpdatedOn(ZonedDateTime.now());
+        skunk.setDeleted(Boolean.FALSE);
+
+
+        if (skunkDto.getChosenDatabase().equals(DatabaseEnum.ALL)) {
+            postgresRepository.save(skunk);
+            mariaDBRepository.save(skunk);
+        } else if (skunkDto.getChosenDatabase().equals(DatabaseEnum.POSTGRES_DB)) {
+            postgresRepository.save(skunk);
+        } else {
+            mariaDBRepository.save(skunk);
+        }
+    }
 }

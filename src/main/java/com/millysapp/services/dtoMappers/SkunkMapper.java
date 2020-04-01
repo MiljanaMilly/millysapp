@@ -10,14 +10,11 @@ import java.util.List;
 @Component
 public class SkunkMapper {
 
-
     public List<SkunkDto> mapListToDto(List<Skunk> skunkList) {
         List<SkunkDto> list = new ArrayList<>();
-
         for(Skunk skunk : skunkList) {
                 list.add(mapToDto(skunk));
         }
-
         return list;
     }
 
@@ -40,9 +37,7 @@ public class SkunkMapper {
         for(SkunkDto skunkDto : skunkDtoList) {
             list.add(mapToEntity(skunkDto));
         }
-
         return list;
-
     }
 
     public Skunk mapToEntity(SkunkDto skunkDto) {
@@ -52,9 +47,9 @@ public class SkunkMapper {
         skunk.setName(skunkDto.getName());
         skunk.setSize(skunkDto.getSize());
         skunk.setWeight(skunkDto.getWeight());
+        skunk.setColor(skunkDto.getColor());
         skunk.setOmnivorous(skunkDto.getOmnivorous());
         skunk.setFamilyName(skunkDto.getFamilyName());
         return skunk;
-
     }
 }
