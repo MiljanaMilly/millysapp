@@ -1,6 +1,10 @@
 package com.millysapp.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "skunks")
@@ -29,6 +33,19 @@ public class Skunk {
 
     @Column(name = "family_name")
     private String familyName;
+
+    @Column(name = "created_on")
+    @CreationTimestamp
+    private ZonedDateTime createdOn;
+
+    @Column(name = "updated_on")
+    private ZonedDateTime updatedOn;
+
+    @Column(name = "isdeleted")
+    private Boolean isDeleted;
+
+    @Column(name = "deleted_on")
+    private LocalDateTime deletedOn;
 
 
     public Long getSkunkId() {
@@ -85,5 +102,37 @@ public class Skunk {
 
     public void setFamilyName(String familyName) {
         this.familyName = familyName;
+    }
+
+    public ZonedDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(ZonedDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public ZonedDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(ZonedDateTime updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public LocalDateTime getDeletedOn() {
+        return deletedOn;
+    }
+
+    public void setDeletedOn(LocalDateTime deletedOn) {
+        this.deletedOn = deletedOn;
     }
 }
