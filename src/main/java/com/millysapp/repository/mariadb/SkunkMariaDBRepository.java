@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface SkunkMariaDBRepository extends JpaRepository<Skunk, Long> {
 
-    List<Skunk> findAll();
+    List<Skunk> findAllByIsDeletedFalse();
+
 }

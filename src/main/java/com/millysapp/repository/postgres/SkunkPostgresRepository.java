@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface SkunkPostgresRepository extends JpaRepository<Skunk, Long> {
 
-    List<Skunk> findAll();
+    List<Skunk> findAllByIsDeletedFalse();
 }

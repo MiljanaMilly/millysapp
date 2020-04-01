@@ -29,7 +29,7 @@ public class Skunk {
     private String color;
 
     @Column(name = "is_omnivorous")
-    private boolean isOmnivorous;
+    private Boolean isOmnivorous;
 
     @Column(name = "family_name")
     private String familyName;
@@ -88,11 +88,11 @@ public class Skunk {
         this.color = color;
     }
 
-    public boolean isOmnivorous() {
+    public Boolean isOmnivorous() {
         return isOmnivorous;
     }
 
-    public void setOmnivorous(boolean omnivorous) {
+    public void setOmnivorous(Boolean omnivorous) {
         isOmnivorous = omnivorous;
     }
 

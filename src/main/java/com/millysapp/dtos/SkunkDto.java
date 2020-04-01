@@ -9,7 +9,7 @@ public class SkunkDto {
     private Double size;
     private Double weight;
     private String color;
-    private boolean isOmnivorous;
+    private Boolean isOmnivorous;
     private String familyName;
     private DatabaseEnum chosenDatabase;
 
@@ -53,11 +53,11 @@ public class SkunkDto {
         this.color = color;
     }
 
-    public boolean isOmnivorous() {
+    public Boolean getOmnivorous() {
         return isOmnivorous;
     }
 
-    public void setOmnivorous(boolean omnivorous) {
+    public void setOmnivorous(Boolean omnivorous) {
         isOmnivorous = omnivorous;
     }
 

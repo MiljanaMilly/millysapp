@@ -2,10 +2,12 @@ package com.millysapp.services.dtoMappers;
 
 import com.millysapp.dtos.SkunkDto;
 import com.millysapp.model.Skunk;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class SkunkMapper {
 
 
@@ -50,7 +52,7 @@ public class SkunkMapper {
         skunk.setName(skunkDto.getName());
         skunk.setSize(skunkDto.getSize());
         skunk.setWeight(skunkDto.getWeight());
-        skunk.setOmnivorous(skunkDto.isOmnivorous());
+        skunk.setOmnivorous(skunkDto.getOmnivorous());
         skunk.setFamilyName(skunkDto.getFamilyName());
         return skunk;
 
