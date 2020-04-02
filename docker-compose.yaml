@@ -27,7 +27,7 @@ services:
 
 
  app:
-  build: .
+  build: ./docker/web
   container_name: skunksapp
   depends_on:
     - postgresdb
