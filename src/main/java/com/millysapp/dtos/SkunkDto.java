@@ -2,9 +2,11 @@ package com.millysapp.dtos;
 
 import com.millysapp.enums.DatabaseEnum;
 
+import java.util.UUID;
+
 public class SkunkDto {
 
-    private Long skunkId;
+    private UUID skunkId;
     private String name;
     private Double size;
     private Double weight;
@@ -13,11 +15,11 @@ public class SkunkDto {
     private String familyName;
     private DatabaseEnum chosenDatabase;
 
-    public Long getSkunkId() {
+    public UUID getSkunkId() {
         return skunkId;
     }
 
-    public void setSkunkId(Long skunkId) {
+    public void setSkunkId(UUID skunkId) {
         this.skunkId = skunkId;
     }
 

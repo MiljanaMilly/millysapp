@@ -1,19 +1,27 @@
 package com.millysapp.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.rmi.server.UID;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "skunks")
 public class Skunk {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long skunkId;
+    @Type(type="uuid-char")
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(
+//            name = "UUID",
+//            strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID skunkId;
 
     @Column(name = "name")
     private String name;
@@ -48,12 +56,12 @@ public class Skunk {
     private LocalDateTime deletedOn;
 
 
-    public Long getSkunkId() {
+    public UUID getSkunkId() {
         return skunkId;
     }
 
-    public void setSkunkId(Long skunkId) {
-        this.skunkId = skunkId;
+    public void setSkunkId(UUID id) {
+        this.skunkId = id;
     }
 
     public String getName() {

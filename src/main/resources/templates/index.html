@@ -64,11 +64,16 @@
             <td class="col"><p th:text="${skunk.omnivorous}"> </p></td>
             <td class="col" th:text="${skunk.familyName}"></td>
             <td class="col">
-                <a href="#">
+                <a href="#" th:href="@{'/skunks/'+ ${datasource} + '/' + ${skunk.getSkunkId()}} "
+                >
                     <strong> Update</strong>
                 </a>
                 <strong >|</strong>
-                <a href="#">
+                <a data-target="#indexPageModal"
+                   data-toggle="modal"
+                   href="#indexPageModal"
+                   th:attr="data-skunkId=${skunk.skunkId}"
+                >
                     <strong> Delete</strong>
                 </a>
             </td>
@@ -81,7 +86,33 @@
 
 
 
+
+
 <div th:insert="fragments/footer :: footer">...</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="indexPageModal" tabindex="-1" role="dialog" aria-labelledby="indexPageModalTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="indexPageModalTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="indexPageModalBody">
+                <p></p>
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+                    <a type="button" class="btn btn-dark ml-3" id="deleteModalBtn" href="#">Save changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script th:src="@{webjars/jquery/3.4.1/jquery.min.js}" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
 <script th:src="@{webjars/popper.js/1.15.0/umd/popper.min.js}" src="/webjars/popper.js/1.15.0/umd/popper.min.js"></script>

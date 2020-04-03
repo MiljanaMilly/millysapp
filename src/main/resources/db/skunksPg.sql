@@ -1,6 +1,6 @@
 
 create table if not exists skunks (
-    id bigserial primary key,
+    id varchar(255) primary key,
     name varchar(255) unique not null,
     size double precision not null,
     weight double precision,

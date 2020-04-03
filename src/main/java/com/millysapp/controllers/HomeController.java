@@ -4,6 +4,7 @@ import com.millysapp.dtos.SkunkDto;
 import com.millysapp.enums.DatabaseEnum;
 import com.millysapp.model.Skunk;
 import com.millysapp.services.SkunkService;
+import javassist.NotFoundException;
 import org.hibernate.dialect.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.bind.DefaultValue;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class HomeController {
@@ -55,6 +57,7 @@ public class HomeController {
     public ModelAndView addSkunk() {
         var mav = new ModelAndView();
 
+        mav.addObject("action", "Save");
         mav.addObject("skunkDto", new SkunkDto());
         mav.setViewName("AddNewSkunk");
         return mav;
@@ -75,6 +78,36 @@ public class HomeController {
         skunkService.save(skunkDto);
         mav.setViewName("redirect:/index");
         return mav;
+    }
+
+    @GetMapping(value = "/skunks/{datasource}/{id}")
+    public ModelAndView editSkunk(
+            @PathVariable("datasource") String datasource,
+            @PathVariable("id") UUID skunkId) throws NotFoundException {
+        var mav =  new ModelAndView();
+
+        SkunkDto skunkDto = skunkService.findSkunkById(skunkId, datasource);
+
+        mav.addObject("skunkDto", skunkDto);
+        mav.addObject("datasource", DatabaseEnum.getByName(datasource));
+        mav.addObject("action", "Edit");
+        mav.setViewName("AddNewSkunk");
+        return mav;
+    }
+
+    @PostMapping(value = "/skunks/{id}/edit")
+    public ModelAndView saveEditedSkunk(
+            @PathVariable("id") UUID skunkId,
+            @Valid
+            @ModelAttribute("skunkDto") SkunkDto skunkDto, BindingResult bindingResult) {
+        var mav = new ModelAndView();
+
+        skunkDto.setSkunkId(skunkId);
+
+        skunkService.edit(skunkDto);
+        mav.setViewName("redirect:/index");
+        return mav;
+
     }
 
 }

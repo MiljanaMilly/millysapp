@@ -1,6 +1,6 @@
 
 create table if not exists skunks (
-    id bigint(200) primary key auto_increment not null,
+    id VARCHAR(255) primary key not null,
     name varchar(50) unique not null,
     size double(6,2) not null,
     weight double(6,2) not null,

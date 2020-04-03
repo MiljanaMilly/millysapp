@@ -16,7 +16,7 @@
     <br>
 </div>
 
-<form class="needs-validation" th:object="${skunkDto}" th:action="@{/skunks}" method="post" style="width: 58%; margin-left: auto; margin-right: auto;" novalidate>
+<form class="needs-validation" th:object="${skunkDto}" th:action="${action} == 'Save' ? @{/skunks} : @{'/skunks/' + ${skunkDto.skunkId} + '/edit'}" method="post" style="width: 58%; margin-left: auto; margin-right: auto;" novalidate>
     <div class="form-row col-10">
         <div class="form-group col-4 mt-4">
             <label for="name" class="lead ml-3">Skunk name: </label>
@@ -85,7 +85,8 @@
         <div class="form-group">
             <label class="lead ml-3" for="datasource">Choose datasource:</label>
             <select  class="form-control" id="datasource" th:field="*{chosenDatabase}" required>
-                <option value=""> <i>Choose a datasource...</i></option>
+                <option value="" th:value="${action} == 'Save' ? '' : ${datasource}"
+                                 th:text = "${action} == 'Save' ? 'Choose a datasource...' : ${datasource.displayName}" > <i>Choose a datasource...</i></option>
                 <option
                         th:each="option : ${T(com.millysapp.enums.DatabaseEnum).values()}"
                         th:text="${option.displayName}"
@@ -104,7 +105,7 @@
         <input type="checkbox"  id="isOmnivorous" th:field="*{omnivorous}" style="margin-left: 15px;" />
 
     </div>
-    <button type="submit" class="btn btn-outline-dark ml-3 mt-4">Save</button>
+    <button type="submit" th:text="${action == 'Edit'} ? 'Edit' : 'Save'" class="btn btn-outline-dark ml-3 mt-4">Save</button>
 </form>
 
 
