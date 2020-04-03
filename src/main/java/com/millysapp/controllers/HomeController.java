@@ -80,7 +80,7 @@ public class HomeController {
         return mav;
     }
 
-    @GetMapping(value = "/skunks/{datasource}/{id}")
+    @GetMapping(value = "/skunks/{datasource}/{id}/")
     public ModelAndView editSkunk(
             @PathVariable("datasource") String datasource,
             @PathVariable("id") UUID skunkId) throws NotFoundException {
@@ -105,6 +105,19 @@ public class HomeController {
         skunkDto.setSkunkId(skunkId);
 
         skunkService.edit(skunkDto);
+        mav.setViewName("redirect:/index");
+        return mav;
+
+    }
+
+    @GetMapping(value = "/skunks/{datasource}/{id}/delete")
+    public ModelAndView deleteSkunk(
+            @PathVariable("datasource") String datasource,
+            @PathVariable("id") UUID skunkId) {
+
+        var mav = new ModelAndView();
+        //soft delete skunk
+        System.out.println(datasource + "  " + skunkId);
         mav.setViewName("redirect:/index");
         return mav;
 

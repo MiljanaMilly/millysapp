@@ -25,4 +25,9 @@ public enum DatabaseEnum {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return displayName;
+    }
 }

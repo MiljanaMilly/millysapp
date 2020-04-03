@@ -64,15 +64,16 @@
             <td class="col"><p th:text="${skunk.omnivorous}"> </p></td>
             <td class="col" th:text="${skunk.familyName}"></td>
             <td class="col">
-                <a href="#" th:href="@{'/skunks/'+ ${datasource} + '/' + ${skunk.getSkunkId()}} "
+                <a href="#" th:href="@{'/skunks/'+ ${datasource} + '/' + ${skunk.getSkunkId()} + '/'} "
                 >
                     <strong> Update</strong>
                 </a>
                 <strong >|</strong>
-                <a data-target="#indexPageModal"
+                <a class="deleteSkunkBtn"
+                   data-target="#indexPageModal"
                    data-toggle="modal"
                    href="#indexPageModal"
-                   th:attr="data-skunkId=${skunk.skunkId}"
+                   th:attr="data-skunk=${skunk.getSkunkId()},data-datasource=${datasource},data-skunkName=${skunk.name}"
                 >
                     <strong> Delete</strong>
                 </a>
@@ -104,9 +105,10 @@
             </div>
             <div class="modal-body" id="indexPageModalBody">
                 <p></p>
+                <h5></h5>
                 <div class="text-center mt-4">
                     <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-                    <a type="button" class="btn btn-dark ml-3" id="deleteModalBtn" href="#">Save changes</a>
+                    <a type="button" class="btn btn-dark ml-3" id="deleteSkunkModalBtn" href="#">Save changes</a>
                 </div>
             </div>
         </div>
@@ -114,9 +116,13 @@
 </div>
 
 
-<script th:src="@{webjars/jquery/3.4.1/jquery.min.js}" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<script th:src="@{webjars/popper.js/1.15.0/umd/popper.min.js}" src="/webjars/popper.js/1.15.0/umd/popper.min.js"></script>
-<script th:src="@{webjars/bootstrap/4.4.1-1/js/bootstrap.js}" src="/webjars/bootstrap/4.4.1-1/js/bootstrap.js"></script>
+<script th:src="@{webjars/jquery/3.4.1/jquery.min.js}" ></script>
+<script th:src="@{webjars/popper.js/1.15.0/umd/popper.min.js}" ></script>
+<script th:src="@{webjars/bootstrap/4.4.1-1/js/bootstrap.js}" ></script>
 <script th:src="@{js/scripts.js}"></script>
+<script th:inline="javascript">
+    var datasources =/*[[${T(com.millysapp.enums.DatabaseEnum).values()}]]*/ 'enum';
+    console.log(datasources);
+</script>
 </body>
 </html>

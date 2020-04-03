@@ -18,3 +18,34 @@
 
 //Remove All option for Index page dropdown
 $(".indexDropdown .dropdown-item").last().remove();
+
+$(function () {
+
+    $('.deleteSkunkBtn'). on('click', function(){
+        const skunkId = $(this).data("skunk");
+        console.log(skunkId);
+        var skunkName = $(this).data('name');
+        var datasource = $(this).data('datasource');
+
+        var deleteSkunkUrl = "skunks/" + datasource + "/" + skunkId + "/delete";
+
+        $("#deleteSkunkModalBtn").attr("href", deleteSkunkUrl);
+        $("#deleteSkunkModalBtn").text("Delete");
+
+        $("#indexPageModalTitle").text("Skunk");
+        $("#indexPageModalBody").children('p').text('Are you sure you want to delete the following skunk?');
+        $("#indexPageModalBody").children('h5').text(skunkName);
+
+
+
+        // var datasources =/*[[${skunkDto}]]*/ 'enum';
+        // console.log(datasources);
+        // var data = JSON.parse(datasources);
+
+
+
+
+    });
+
+
+});
