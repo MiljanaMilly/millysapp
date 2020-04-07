@@ -5,9 +5,6 @@ FROM ubuntu:18.04
 MAINTAINER milly
 
 #environment variables inside of the container
-ENV MYSQL_ROOT_PASSWORD 1
-ENV MYSQL_DATADIR /var/lib/mysql
-ENV MYSQL_INITDB_SKIP_TZINFO=1
 
 RUN apt-get update && apt-get install -y gnupg2
 
@@ -23,7 +20,10 @@ RUN echo 'deb [arch=amd64,arm64,ppc64el] http://mariadb.mirror.nucleus.be/repo/1
 RUN apt update
 RUN apt install -y -q mariadb-server mariadb-client
 
-#set MariaDB data dir and log dir
-RUN mkdir -p /var/lib/mysql && mkdir -p /var/log/mysql && chown mysql:mysql /var/log/mysql
+RUN chown mysql:mysql /etc/mysql/mariadb.conf.d/50-server.cnf && chmod a=r /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i "s/.*bind-address.*/#bind-address = 127.0.0.1/" /etc/mysql/mariadb.conf.d/50-server.cnf && \
+ /etc/init.d/mysql start && mysql -e "GRANT ALL  ON *. * TO 'admin'@'%' IDENTIFIED BY '1' WITH GRANT OPTION; FLUSH PRIVILEGES;CREATE DATABASE IF NOT EXISTS skunksdb;"
 
-EXPOSE 3306
+
+EXPOSE 3306/tcp
+CMD ["/usr/bin/mysqld_safe"]
