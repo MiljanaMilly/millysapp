@@ -4,7 +4,6 @@ import com.millysapp.dtos.SkunkDto;
 import com.millysapp.enums.DatabaseEnum;
 import com.millysapp.exceptions.SkunkNotFoundException;
 import com.millysapp.services.SkunkService;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -108,7 +107,7 @@ public class HomeController {
             mav.setViewName("AddNewSkunk");
             return mav;
         }
-        
+
         skunkService.edit(skunkDto);
         mav.setViewName("redirect:/index");
         return mav;
@@ -125,7 +124,5 @@ public class HomeController {
         System.out.println(datasource + "  " + skunkId);
         mav.setViewName("redirect:/index");
         return mav;
-
     }
-
 }

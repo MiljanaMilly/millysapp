@@ -7,7 +7,6 @@ import com.millysapp.model.Skunk;
 import com.millysapp.repository.mariadb.SkunkMariaDBRepository;
 import com.millysapp.repository.postgres.SkunkPostgresRepository;
 import com.millysapp.services.dtoMappers.SkunkMapper;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +55,7 @@ public class SkunkService {
         throw new SkunkNotFoundException("No such skunk");
     }
 
-    public Skunk findSkunkById(UUID skunkId, String datasource) throws NotFoundException {
+    public Skunk findSkunkById(UUID skunkId, String datasource) throws SkunkNotFoundException {
         Optional<Skunk> skunk;
         if(datasource.equals(DatabaseEnum.POSTGRES_DB.getDisplayName())) {
             skunk = postgresRepository.findBySkunkIdAndIsDeletedFalse(skunkId);
@@ -66,7 +65,7 @@ public class SkunkService {
         if(skunk.isPresent()){
             return skunk.get();
         }
-        throw new NotFoundException("Skunk with id " + skunkId + "is not found!");
+        throw new SkunkNotFoundException("Skunk with id " + skunkId + "is not found!");
     }
 
     public List<String> findDatasourcesBySkunkId(UUID skunkId) {
@@ -163,7 +162,7 @@ public class SkunkService {
         }
     }
 
-    public void deleteSkunkAtDatasources(UUID skunkId, String[] dataSources) throws NotFoundException {
+    public void deleteSkunkAtDatasources(UUID skunkId, String[] dataSources) throws SkunkNotFoundException {
         for(String dataSource : dataSources) {
             if(DatabaseEnum.POSTGRES_DB.getDisplayName().equals(dataSource)) {
                 //set deletedOn and isDeleted as true
