@@ -13,21 +13,27 @@ services:
 
 
  mariadb:
-   image: mariadb:latest
+   build:
+     context: .
+     dockerfile: docker/db/Dockerfile
    container_name: mariadb
-   restart: always
    environment:
       - MYSQL_ROOT_PASSWORD=1
       - MYSQL_DATABASE=skunksdb
+      - MYSQL_USERNAME=admin
+      - MYSQL_PASSWORD=1
       - MYSQL_INITDB_SKIP_TZINFO=1
    ports:
      - 3306:3306
    volumes:
    - dbdata:/mdb
+   tty: true
 
 
  app:
-  build: ./docker/web
+  build:
+    context: .
+    dockerfile: docker/web/Dockerfile
   container_name: skunksapp
   depends_on:
     - postgresdb

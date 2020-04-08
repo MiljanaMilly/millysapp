@@ -4,8 +4,6 @@ FROM ubuntu:18.04
 #set the author of the image
 MAINTAINER milly
 
-#environment variables inside of the container
-
 RUN apt-get update && apt-get install -y gnupg2
 
 #add the authentication key for the repository,
