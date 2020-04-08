@@ -2,14 +2,10 @@ package com.millysapp.controllers;
 
 import com.millysapp.dtos.SkunkDto;
 import com.millysapp.enums.DatabaseEnum;
-import com.millysapp.model.Skunk;
+import com.millysapp.exceptions.SkunkNotFoundException;
 import com.millysapp.services.SkunkService;
 import javassist.NotFoundException;
-import org.hibernate.dialect.Database;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -70,7 +66,8 @@ public class HomeController {
         var mav = new ModelAndView();
 
         if(bindingResult.hasErrors()){
-            mav.addObject("skunkDto", new SkunkDto());
+            mav.addObject("action", "Save");
+            mav.addObject("skunkDto", skunkDto);
             mav.setViewName("AddNewSkunk");
             return mav;
         }
@@ -83,10 +80,10 @@ public class HomeController {
     @GetMapping(value = "/skunks/{datasource}/{id}/")
     public ModelAndView editSkunk(
             @PathVariable("datasource") String datasource,
-            @PathVariable("id") UUID skunkId) throws NotFoundException {
+            @PathVariable("id") UUID skunkId) throws SkunkNotFoundException {
         var mav =  new ModelAndView();
 
-        SkunkDto skunkDto = skunkService.findSkunkById(skunkId, datasource);
+        SkunkDto skunkDto = skunkService.findSkunkDtoById(skunkId, datasource);
 
         mav.addObject("skunkDto", skunkDto);
         mav.addObject("datasource", DatabaseEnum.getByName(datasource));
@@ -104,6 +101,14 @@ public class HomeController {
 
         skunkDto.setSkunkId(skunkId);
 
+        if(bindingResult.hasErrors()){
+            mav.addObject("action", "Edit");
+            mav.addObject("datasource", skunkDto.getChosenDatabase());
+            mav.addObject("skunkDto", skunkDto);
+            mav.setViewName("AddNewSkunk");
+            return mav;
+        }
+        
         skunkService.edit(skunkDto);
         mav.setViewName("redirect:/index");
         return mav;

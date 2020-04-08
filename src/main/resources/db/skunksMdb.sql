@@ -1,7 +1,7 @@
 
 create table if not exists skunks (
-    id VARCHAR(50) primary key not null,
-    name varchar(50) unique not null,
+    id VARCHAR(36) primary key not null,
+    name varchar(50) not null,
     size double(6,2) not null,
     weight double(6,2) not null,
     color varchar(50)  not null,

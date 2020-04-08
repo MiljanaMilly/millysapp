@@ -2,16 +2,24 @@ package com.millysapp.dtos;
 
 import com.millysapp.enums.DatabaseEnum;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 public class SkunkDto {
 
     private UUID skunkId;
+    @Size(min = 3)
+    @NotBlank
     private String name;
     private Double size;
     private Double weight;
+    @NotBlank
     private String color;
     private Boolean isOmnivorous;
+    @Size(min = 2)
+    @NotBlank
     private String familyName;
     private DatabaseEnum chosenDatabase;
 

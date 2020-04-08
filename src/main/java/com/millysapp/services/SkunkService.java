@@ -2,18 +2,17 @@ package com.millysapp.services;
 
 import com.millysapp.dtos.SkunkDto;
 import com.millysapp.enums.DatabaseEnum;
+import com.millysapp.exceptions.SkunkNotFoundException;
 import com.millysapp.model.Skunk;
 import com.millysapp.repository.mariadb.SkunkMariaDBRepository;
 import com.millysapp.repository.postgres.SkunkPostgresRepository;
 import com.millysapp.services.dtoMappers.SkunkMapper;
 import javassist.NotFoundException;
-import org.apache.tomcat.util.net.jsse.JSSEUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -44,7 +43,7 @@ public class SkunkService {
         return null;
     }
 
-    public SkunkDto findSkunkById(UUID skunkId, String datasource) throws NotFoundException {
+    public SkunkDto findSkunkDtoById(UUID skunkId, String datasource) throws SkunkNotFoundException {
         Optional<Skunk> skunk;
         if(datasource.equals(DatabaseEnum.POSTGRES_DB.getDisplayName())) {
             skunk = postgresRepository.findBySkunkIdAndIsDeletedFalse(skunkId);
@@ -54,7 +53,34 @@ public class SkunkService {
         if(skunk.isPresent()){
             return skunkMapper.mapToDto(skunk.get());
         }
-        throw new NotFoundException("No such skunk");
+        throw new SkunkNotFoundException("No such skunk");
+    }
+
+    public Skunk findSkunkById(UUID skunkId, String datasource) throws NotFoundException {
+        Optional<Skunk> skunk;
+        if(datasource.equals(DatabaseEnum.POSTGRES_DB.getDisplayName())) {
+            skunk = postgresRepository.findBySkunkIdAndIsDeletedFalse(skunkId);
+        } else {
+            skunk = mariaDBRepository.findBySkunkIdAndIsDeletedFalse(skunkId);
+        }
+        if(skunk.isPresent()){
+            return skunk.get();
+        }
+        throw new NotFoundException("Skunk with id " + skunkId + "is not found!");
+    }
+
+    public List<String> findDatasourcesBySkunkId(UUID skunkId) {
+        Optional<Skunk> skunkMdbOptional = mariaDBRepository.findBySkunkIdAndIsDeletedFalse(skunkId);
+        Optional<Skunk> skunkPdbOptional = postgresRepository.findBySkunkIdAndIsDeletedFalse(skunkId);
+
+        List<String> datasources = new ArrayList<>();
+        if(!skunkMdbOptional.isEmpty()) {
+            datasources.add(DatabaseEnum.MARIA_DB.getDisplayName());
+        }
+        if (!skunkPdbOptional.isEmpty()) {
+            datasources.add(DatabaseEnum.POSTGRES_DB.getDisplayName());
+        }
+        return datasources;
     }
 
     public void save(SkunkDto skunkDto) {
@@ -135,6 +161,28 @@ public class SkunkService {
 
             mariaDBRepository.save(skunk);
         }
+    }
+
+    public void deleteSkunkAtDatasources(UUID skunkId, String[] dataSources) throws NotFoundException {
+        for(String dataSource : dataSources) {
+            if(DatabaseEnum.POSTGRES_DB.getDisplayName().equals(dataSource)) {
+                //set deletedOn and isDeleted as true
+                Skunk skunk = findSkunkById(skunkId, dataSource);
+                skunk.setDeletedOn(ZonedDateTime.now());
+                skunk.setDeleted(Boolean.TRUE);
+                postgresRepository.save(skunk);
+
+            } else if (DatabaseEnum.MARIA_DB.getDisplayName().equals(dataSource)) {
+                //set deletedOn and isDeleted as true
+                Skunk skunk = findSkunkById(skunkId, dataSource);
+                skunk.setDeletedOn(ZonedDateTime.now());
+                skunk.setDeleted(Boolean.TRUE);
+                mariaDBRepository.save(skunk);
+            } else {
+                return;
+            }
+        }
+
     }
 
 

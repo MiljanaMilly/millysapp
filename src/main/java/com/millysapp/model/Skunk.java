@@ -53,7 +53,7 @@ public class Skunk {
     private Boolean isDeleted;
 
     @Column(name = "deleted_on")
-    private LocalDateTime deletedOn;
+    private ZonedDateTime deletedOn;
 
 
     public UUID getSkunkId() {
@@ -136,11 +136,11 @@ public class Skunk {
         isDeleted = deleted;
     }
 
-    public LocalDateTime getDeletedOn() {
+    public ZonedDateTime getDeletedOn() {
         return deletedOn;
     }
 
-    public void setDeletedOn(LocalDateTime deletedOn) {
+    public void setDeletedOn(ZonedDateTime deletedOn) {
         this.deletedOn = deletedOn;
     }
 }

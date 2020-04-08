@@ -22,37 +22,43 @@
             <label for="name" class="lead ml-3">Skunk name: </label>
             <input type="text" id="name" class="form-control" placeholder="Enter skunk name here..." th:field ="*{name}" th:value="*{name}" required>
             <div class="invalid-feedback">
-                Please enter the skunk name.
+                <p>
+                    Please enter the skunk name.
+                </p>
             </div>
-    <!--        <p class="text-danger text-center"-->
-    <!--           th:if="${#fields.hasErrors('name')}"-->
-    <!--           th:errors="*{name}">-->
-    <!--            Validation error-->
-    <!--        </p>-->
+            <p class="text-danger text-center"
+               th:if="${#fields.hasErrors('name')}"
+               th:errors="*{name}">
+                Validation error
+            </p>
         </div>
         <div class="form-group col-4 mt-4">
             <label for="family" class="lead ml-3">Skunk family name: </label>
             <input type="text" id="family" class="form-control" placeholder="Enter family name here..." th:field ="*{familyName}" th:value="*{familyName}" required>
             <div class="invalid-feedback">
-                Please enter the skunk family name.
+                <p>
+                    Please enter the skunk family name.
+                </p>
             </div>
-            <!--        <p class="text-danger text-center"-->
-            <!--           th:if="${#fields.hasErrors('name')}"-->
-            <!--           th:errors="*{name}">-->
-            <!--            Validation error-->
-            <!--        </p>-->
+                    <p class="text-danger text-center"
+                       th:if="${#fields.hasErrors('familyName')}"
+                       th:errors="*{familyName}">
+                        Validation error
+                    </p>
         </div>
         <div class="form-group col-4 mt-4">
             <label for="color" class="lead ml-3">Skunk color: </label>
             <input type="text" id="color" class="form-control" placeholder="Enter skunk color here..." th:field ="*{color}" th:value="*{color}" required>
             <div class="invalid-feedback">
-                Please enter the skunk color.
+                <p>
+                    Please enter the skunk color.
+                </p>
             </div>
-            <!--        <p class="text-danger text-center"-->
-            <!--           th:if="${#fields.hasErrors('name')}"-->
-            <!--           th:errors="*{name}">-->
-            <!--            Validation error-->
-            <!--        </p>-->
+                    <p class="text-danger text-center"
+                       th:if="${#fields.hasErrors('color')}"
+                       th:errors="*{color}">
+                        Validation error
+                    </p>
         </div>
     </div>
     <div class="form-row col-8">
@@ -60,25 +66,29 @@
             <label for="name" class="lead ml-3">Skunk size: </label>
             <input type="text" id="size" class="form-control" placeholder="Enter skunk size here..." th:field ="*{size}" th:value="*{size}" required>
             <div class="invalid-feedback">
-                Please enter the skunk size.
+                <p>
+                    Please enter the skunk size.
+                </p>
             </div>
-            <!--        <p class="text-danger text-center"-->
-            <!--           th:if="${#fields.hasErrors('name')}"-->
-            <!--           th:errors="*{name}">-->
-            <!--            Validation error-->
-            <!--        </p>-->
+                    <p class="text-danger text-center"
+                       th:if="${#fields.hasErrors('size')}"
+                       th:errors="*{size}">
+                        Validation error
+                    </p>
         </div>
         <div class="form-group col-4 mt-4">
             <label for="family" class="lead ml-3">Skunk weight: </label>
             <input type="text" id="weight" class="form-control" placeholder="Enter skunk weight here..." th:field ="*{weight}" th:value="*{weight}" required>
             <div class="invalid-feedback">
-                Please enter the skunk  weight.
+                <p>
+                    Please enter the skunk weight.
+                </p>
             </div>
-            <!--        <p class="text-danger text-center"-->
-            <!--           th:if="${#fields.hasErrors('name')}"-->
-            <!--           th:errors="*{name}">-->
-            <!--            Validation error-->
-            <!--        </p>-->
+                    <p class="text-danger text-center"
+                       th:if="${#fields.hasErrors('weight')}"
+                       th:errors="*{weight}">
+                        Validation error
+                    </p>
         </div>
     </div>
     <div class="form-row col-6 mt-4">
@@ -95,14 +105,16 @@
                 </option>
             </select>
             <div class="invalid-feedback">
-                Please choose a datasource.
+                <p>
+                    Please choose a datasource.
+                </p>
             </div>
         </div>
     </div>
 
     <div class="form-row col-6 mt-4">
         <label for="isOmnivorous" class="lead ml-3">Omnivorous: </label>
-        <input type="checkbox"  id="isOmnivorous" th:field="*{omnivorous}" style="margin-left: 15px;" />
+        <input class="ml-3" type="checkbox"  id="isOmnivorous" th:field="*{omnivorous}" />
 
     </div>
     <button type="submit" th:text="${action == 'Edit'} ? 'Edit' : 'Save'" class="btn btn-outline-dark ml-3 mt-4">Save</button>
@@ -111,9 +123,7 @@
 
 <div th:insert="fragments/footer :: footer">...</div>
 
-<!--<script th:src="@{webjars/jquery/3.4.1/jquery.min.js}" src="/webjars/jquery/3.4.1/jquery.min.js"></script>-->
-<!--<script th:src="@{webjars/popper.js/1.15.0/umd/popper.min.js}" src="/webjars/popper.js/1.15.0/umd/popper.min.js"></script>-->
-<!--<script th:src="@{webjars/bootstrap/4.4.1-1/js/bootstrap.js}" src="/webjars/bootstrap/4.4.1-1/js/bootstrap.js"></script>-->
+
 <script th:src="@{webjars/jquery/3.4.1/jquery.min.js}" ></script>
 <script th:src="@{webjars/popper.js/1.15.0/umd/popper.min.js}" ></script>
 <script th:src="@{webjars/bootstrap/4.4.1-1/js/bootstrap.js}" ></script>
